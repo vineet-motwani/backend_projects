@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateflux
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-2gw1uaqrtf1w7k5s.us.auth0.com/
+  aerospike:
+    hosts: localhost:3000
+    namespace: test
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: my_first_route
+              uri: https://httpbin.org
+              predicates:
+                - Path=/get
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
