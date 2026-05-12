@@ -12,13 +12,19 @@ spring:
   aerospike:
     hosts: localhost:3000
     namespace: test
+    mock:
+      enabled: false
   cloud:
     gateway:
-      routes:
-        - id: my_first_route
-          uri: https://httpbin.org
-          predicates:
-            - Path=/get
+      server:
+        webflux:
+          routes:
+            - id: my_first_route
+              uri: https://httpbin.org
+              predicates:
+                - Path=/api/get/**
+              filters:
+                - RewritePath=/api/(?<segment>.*), /$\{segment}
 
 management:
   endpoints:

@@ -1,0 +1,457 @@
+{
+  "properties": [
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.add-request-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the add-request-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.map-request-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the map-request-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.add-request-parameter.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the add-request-parameter filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.add-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the add-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.json-to-grpc.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the JSON to gRPC filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.modify-request-body.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the modify-request-body filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.local-response-cache.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the local-response-cache filter.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.local-response-cache.size",
+      "type": "org.springframework.util.unit.DataSize",
+      "description": "Maximum size of the cache to evict entries for this route (in KB, MB and GB)."
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.local-response-cache.time-to-live",
+      "type": "java.time.Duration",
+      "description": "Time to expire a cache entry (expressed in s for seconds, m for minutes, and h for hours).",
+      "defaultValue": "5m"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.dedupe-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the dedupe-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.modify-response-body.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the modify-response-body filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.prefix-path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the prefix-path filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.preserve-host-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the preserve-host-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.redirect-to.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the redirect-to filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.remove-request-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the remove-request-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.remove-request-parameter.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the remove-request-parameter filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.remove-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the remove-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.request-rate-limiter.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the request-rate-limiter filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.rewrite-path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the rewrite-path filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.retry.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the retry filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.set-path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the set-path filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.secure-headers.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the secure-headers filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.set-request-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the set-request-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.set-request-host-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the set-request-host-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.set-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the set-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.rewrite-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the rewrite-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.rewrite-location-response-header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the rewrite-location-response-header filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.rewrite-location.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the rewrite-location filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.rewrite-request-parameter.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the rewrite-request-parameter filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.set-status.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the set-status filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.save-session.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the save-session filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.strip-prefix.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the strip-prefix filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.request-header-to-request-uri.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the request-header-to-request-uri filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.request-size.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the request-size filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.request-header-size.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the request-header-size filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.circuit-breaker.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the circuit-breaker filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.filter.fallback-headers.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the fallback-headers filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.adapt-cached-body.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the adapt-cached-body global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.remove-cached-body.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the remove-cached-body global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.route-to-request-url.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the route-to-request-url global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.forward-routing.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the forward-routing global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.forward-path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the forward-path global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.websocket-routing.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the websocket-routing global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.netty-write-response.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the netty-write-response global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.netty-routing.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the netty-routing global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.reactive-load-balancer-client.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the reactive-load-balancer-client global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.load-balancer-client.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the load-balancer-client global filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.global-filter.local-response-cache.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the local-response-cache filter for all routes, it allows to add a specific configuration at route level using LocalResponseCache filter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.after.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the after predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.before.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the before predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.between.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the between predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.cookie.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the cookie predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.header.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the header predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.host.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the host predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.method.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the method predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the path predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.query.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the query predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.read-body.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the read-body predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.remote-addr.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the remote-addr predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.xforwarded-remote-addr.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the xforwarded-remote-addr predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.weight.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the weight predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.cloud-foundry-route-service.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the cloud-foundry-route-service predicate.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables gateway functionality.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.forwarded.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the ForwardedHeadersFilter.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.forwarded.by.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the Forwarded: by header part.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.httpserver.wiretap",
+      "type": "java.lang.Boolean",
+      "description": "Enables wiretap debugging for Netty HttpServer.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.globalcors.add-to-simple-url-handler-mapping",
+      "type": "java.lang.Boolean",
+      "description": "If global CORS config should be added to the URL handler.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.handler-mapping.order",
+      "type": "java.lang.Integer",
+      "description": "The order of RoutePredicateHandlerMapping.",
+      "defaultValue": "1"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.restrictive-property-accessor.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Restricts method and property access in SpEL.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.observability.enabled",
+      "type": "java.lang.Boolean",
+      "description": "If Micrometer Observability support should be turned on.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.predicate.host.include-port",
+      "type": "java.lang.Boolean",
+      "description": "Include the port in matching the host name.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.route-refresh-listener.enabled",
+      "type": "java.lang.Boolean",
+      "description": "If RouteRefreshListener should be turned on.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.redis-route-definition-repository.enabled",
+      "type": "java.lang.Boolean",
+      "description": "If RedisRouteDefinitionRepository should be enabled.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.metrics.tags.path.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the gateway path tag provider.",
+      "defaultValue": "false",
+      "deprecation": {
+        "reason": "Setting this property to true will cause the path tag to be added to all metrics.",
+        "replacement": "spring.cloud.gateway.server.webflux.metrics.path-tags.enabled"
+      }
+    },
+    {
+      "name": "spring.cloud.gateway.server.webflux.metrics.path-tags.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables the gateway path tag provider.",
+      "defaultValue": "false"
+    }
+  ]
+}

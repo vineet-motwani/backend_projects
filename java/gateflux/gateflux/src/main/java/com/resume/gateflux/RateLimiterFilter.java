@@ -1,6 +1,6 @@
 package com.resume.gateflux;
 
-import com.aerospike.client.AerospikeClient;
+import com.aerospike.client.IAerospikeClient;
 import com.aerospike.client.Bin;
 import com.aerospike.client.Key;
 import com.aerospike.client.Operation;
@@ -19,10 +19,10 @@ import reactor.core.scheduler.Schedulers;
 @Component
 public class RateLimiterFilter implements GlobalFilter, Ordered {
 
-    private final AerospikeClient aerospikeClient;
+    private final IAerospikeClient aerospikeClient;
     private static final int MAX_REQUESTS = 5; // per minute
 
-    public RateLimiterFilter(AerospikeClient aerospikeClient) {
+    public RateLimiterFilter(IAerospikeClient aerospikeClient) {
         this.aerospikeClient = aerospikeClient;
     }
 
