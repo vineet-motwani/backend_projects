@@ -14,13 +14,11 @@ spring:
     namespace: test
   cloud:
     gateway:
-      server:
-        webmvc:
-          routes:
-            - id: my_first_route
-              uri: https://httpbin.org
-              predicates:
-                - Path=/get
+      routes:
+        - id: my_first_route
+          uri: https://httpbin.org
+          predicates:
+            - Path=/get
 
 management:
   endpoints:
