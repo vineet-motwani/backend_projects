@@ -1,9 +1,19 @@
 server:
   port: 8080
+  max-http-request-header-size: 8KB
+  netty:
+    connection-timeout: 5s
+    idle-timeout: 10s
+    max-initial-line-length: 4KB
+    max-keep-alive-requests: 1000
+    validate-headers: true
 
 spring:
   application:
     name: gateflux
+  http:
+    codecs:
+      max-in-memory-size: 5MB
   security:
     oauth2:
       resourceserver:
@@ -18,6 +28,15 @@ spring:
     gateway:
       server:
         webflux:
+          default-filters:
+            - name: RequestSize
+              args:
+                maxSize: 5MB
+          httpclient:
+            connect-timeout: 5000
+            response-timeout: 10s
+            pool:
+              max-idle-time: 15s
           routes:
             - id: my_first_route
               uri: https://httpbin.org
@@ -31,3 +50,10 @@ management:
     web:
       exposure:
         include: "*"
+
+gateflux:
+  protection:
+    header-timeout: 10s
+    read-timeout: 10s
+    request-timeout: 30s
+    max-body-size: 5MB
