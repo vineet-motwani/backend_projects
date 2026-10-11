@@ -46,3 +46,10 @@ Thumbs.db
 *.tmp
 *.bak
 *.swp
+
+### Terraform & Keys ###
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.pem

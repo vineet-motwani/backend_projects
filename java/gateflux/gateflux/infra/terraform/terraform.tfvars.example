@@ -1,0 +1,17 @@
+# AWS Region (ap-south-1 = Mumbai, us-east-1 = N. Virginia)
+aws_region = "ap-south-1"
+
+# Instance Type
+# t3.small  = 2 vCPU, 2GB RAM (~$0.02/hr on-demand, ~$0.007/hr on spot)
+# t3.medium = 2 vCPU, 4GB RAM (~$0.04/hr on-demand, ~$0.012/hr on spot)
+instance_type = "t3.small"
+
+# Use Spot pricing for 70%+ cost discount
+use_spot_instance = true
+
+# Optional: Provide your existing SSH public key.
+# If left empty, Terraform will auto-generate an ED25519 key at infra/terraform/gateflux-key.pem
+ssh_public_key = ""
+
+# Restrict inbound traffic to your public IP if desired (e.g. ["203.0.113.50/32"])
+allowed_cidr_blocks = ["0.0.0.0/0"]

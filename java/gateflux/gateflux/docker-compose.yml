@@ -1,0 +1,30 @@
+services:
+  aerospike:
+    image: docker.io/aerospike/aerospike-server:latest
+    container_name: gateflux-aerospike
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  mock-upstream:
+    image: docker.io/mccutchen/go-httpbin:v2.15.0
+    container_name: gateflux-mock-upstream
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+
+  gateflux:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gateflux-gateway
+    depends_on:
+      - aerospike
+      - mock-upstream
+    environment:
+      - AEROSPIKE_HOSTS=aerospike:3000
+      - AEROSPIKE_NAMESPACE=test
+      - UPSTREAM_URI=http://mock-upstream:8080
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

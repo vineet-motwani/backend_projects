@@ -20,8 +20,8 @@ spring:
         jwt:
           issuer-uri: https://dev-2gw1uaqrtf1w7k5s.us.auth0.com/
   aerospike:
-    hosts: localhost:3000
-    namespace: test
+    hosts: ${AEROSPIKE_HOSTS:localhost:3000}
+    namespace: ${AEROSPIKE_NAMESPACE:test}
     mock:
       enabled: false
   cloud:
@@ -39,7 +39,7 @@ spring:
               max-idle-time: 15s
           routes:
             - id: my_first_route
-              uri: https://httpbin.org
+              uri: ${UPSTREAM_URI:https://httpbin.org}
               predicates:
                 - Path=/api/get/**
               filters:

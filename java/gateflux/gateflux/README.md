@@ -213,5 +213,33 @@ gateflux/
 │   └── UserContextFilter.java     # Downstream user identity enrichment (X-User-Id, X-User-Roles)
 ├── src/main/resources/
 │   └── application.yaml           # Gateway routes, Aerospike hosts, and OAuth2 issuer config
-└── pom.xml                        # Maven dependencies (Spring Cloud Gateway, Aerospike Starter)
+├── Dockerfile                     # Multi-stage container build (Temurin 21 JRE)
+├── docker-compose.yml             # Full stack (GateFlux + Aerospike + go-httpbin mock)
+├── infra/
+│   ├── terraform/                 # AWS Spot EC2 provisioning (<$0.01/hr)
+│   └── loadtest/                  # k6 load testing suite and BENCHMARKS.md log
+└── pom.xml                        # Maven build configuration
 ```
+
+---
+
+## Load Testing & Cloud Deployment
+
+- **One-Command Local Stack**:
+  ```bash
+  docker compose up -d --build
+  ```
+- **Low-Cost AWS Deployment**:
+  Provision an EC2 spot instance with Terraform (~$0.008/hr):
+  ```bash
+  cd infra/terraform
+  terraform init
+  terraform apply
+  ```
+- **Run Performance Benchmarks**:
+  Verify 10k connections and sub-millisecond latencies using k6:
+  ```bash
+  k6 run infra/loadtest/k6-benchmark.js
+  ```
+  See [`infra/loadtest/BENCHMARKS.md`](infra/loadtest/BENCHMARKS.md) for full benchmark methodology and historical results.
+
