@@ -50,7 +50,7 @@ export default function () {
   }
 
   // Hit the gateway route
-  const res = http.get(`${TARGET_HOST}/api/get`, {
+  const res = http.get(`${TARGET_HOST}/get`, {
     headers: headers,
     tags: { name: 'GateFlux_Proxy' },
   });

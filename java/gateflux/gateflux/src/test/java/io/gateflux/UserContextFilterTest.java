@@ -44,7 +44,7 @@ class UserContextFilterTest {
                 "auth0|user_42"
         );
 
-        MockServerHttpRequest request = MockServerHttpRequest.get("/api/get").build();
+        MockServerHttpRequest request = MockServerHttpRequest.get("/get").build();
         MockServerWebExchange exchange = MockServerWebExchange.from(request);
 
         AtomicReference<String> userIdHeader = new AtomicReference<>();
@@ -76,7 +76,7 @@ class UserContextFilterTest {
 
         JwtAuthenticationToken auth = new JwtAuthenticationToken(jwt, List.of(), "client_svc_99");
 
-        MockServerHttpRequest request = MockServerHttpRequest.get("/api/get").build();
+        MockServerHttpRequest request = MockServerHttpRequest.get("/get").build();
         MockServerWebExchange exchange = MockServerWebExchange.from(request);
 
         AtomicReference<String> userIdHeader = new AtomicReference<>();

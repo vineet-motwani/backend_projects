@@ -25,10 +25,10 @@ flowchart TD
         Aero -->|> 5 requests/min| Resp429["429 Too Many Requests"]
         Aero -->|<= 5 requests/min| UserCtx["UserContextFilter (Order: 0)"]
 
-        UserCtx -->|Inject X-User-Id & X-User-Roles| Route["Gateway Routing & RewritePath Filter"]
+        UserCtx -->|Inject X-User-Id & X-User-Roles| Route["Gateway Routing (:8080/get)"]
     end
 
-    Route -->|Rewrite /api/get to /get| Upstream["Upstream Service (httpbin.org)"]
+    Route -->|Forward /get to Upstream| Upstream["Upstream Service (httpbin.org)"]
     Upstream -->|Response with X-Correlation-Id header| Client
 ```
 
@@ -39,7 +39,7 @@ flowchart TD
 - **Distributed Tracing (`CorrelationIdFilter`)**: A global filter that inspects requests for `X-Correlation-Id`. If missing, it generates a fresh UUID. It forwards the ID downstream and attaches it to the client HTTP response headers.
 - **Aerospike Rate Limiter (`RateLimiterFilter`)**: A reactive global filter that extracts client IP addresses, issues atomic increments to Aerospike, and enforces a sliding 60-second TTL window (max 5 requests/minute).
 - **User Context Enrichment (`UserContextFilter`)**: Extracts the subject and granted authorities from the reactive SecurityContext, injecting `X-User-Id` and `X-User-Roles` headers for downstream services to avoid redundant token parsing.
-- **Gateway Routing (`application.yaml`)**: Matches incoming paths, rewrites URI segments, and proxies downstream traffic.
+- **Gateway Routing (`application.yaml`)**: Matches incoming `/get` requests and proxies them directly to upstream destinations.
 
 ---
 
@@ -126,7 +126,7 @@ Content-Type: application/vnd.spring-boot.actuator.v3+json
 Demonstrates that protected routes reject unauthorized requests:
 
 ```bash
-curl -i http://localhost:8080/api/get
+curl -i http://localhost:8080/get
 ```
 
 **Expected response**:
@@ -138,10 +138,10 @@ WWW-Authenticate: Bearer
 ---
 
 ### 3. Proxy Routing & Downstream Header Enrichment (Authenticated Request)
-Demonstrates JWT validation, path rewriting (`/api/get` -> `/get`), forwarding to `httpbin.org`, and header enrichment (`X-Correlation-Id`, `X-User-Id`, `X-User-Roles`):
+Demonstrates JWT validation, direct proxy routing to `httpbin.org/get`, and header enrichment (`X-Correlation-Id`, `X-User-Id`, `X-User-Roles`):
 
 ```bash
-curl -i -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/get
+curl -i -H "Authorization: Bearer $TOKEN" http://localhost:8080/get
 ```
 
 **Expected response**:
@@ -169,7 +169,7 @@ Content-Type: application/json
 Demonstrates that if a client or upstream service passes an existing correlation ID, the gateway preserves and propagates it:
 
 ```bash
-curl -i -H "Authorization: Bearer $TOKEN" -H "X-Correlation-Id: custom-trace-12345" http://localhost:8080/api/get
+curl -i -H "Authorization: Bearer $TOKEN" -H "X-Correlation-Id: custom-trace-12345" http://localhost:8080/get
 ```
 
 **Expected response**:
@@ -181,7 +181,7 @@ Both the response header and the echoed upstream headers reflect `custom-trace-1
 Demonstrates the 5-requests-per-minute threshold. The first 5 requests succeed, and the 6th is rejected:
 
 ```bash
-for i in {1..6}; do curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/get; done
+for i in {1..6}; do curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer $TOKEN" http://localhost:8080/get; done
 ```
 
 **Expected output**:

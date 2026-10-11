@@ -10,7 +10,7 @@ output "gateway_health_url" {
 
 output "gateway_proxy_url" {
   description = "API route URL for the GateFlux gateway"
-  value       = "http://${aws_instance.gateflux_node.public_ip}:8080/api/get"
+  value       = "http://${aws_instance.gateflux_node.public_ip}:8080/get"
 }
 
 output "ssh_command" {

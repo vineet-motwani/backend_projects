@@ -22,7 +22,7 @@ class CorrelationIdFilterTest {
 
     @Test
     void generatesCorrelationIdWhenMissing() {
-        MockServerHttpRequest request = MockServerHttpRequest.get("/api/get").build();
+        MockServerHttpRequest request = MockServerHttpRequest.get("/get").build();
         MockServerWebExchange exchange = MockServerWebExchange.from(request);
 
         AtomicReference<String> downstreamHeader = new AtomicReference<>();
@@ -43,7 +43,7 @@ class CorrelationIdFilterTest {
     @Test
     void preservesExistingCorrelationId() {
         String existingTraceId = "trace-custom-uuid-456";
-        MockServerHttpRequest request = MockServerHttpRequest.get("/api/get")
+        MockServerHttpRequest request = MockServerHttpRequest.get("/get")
                 .header(CorrelationIdFilter.CORRELATION_ID_HEADER, existingTraceId)
                 .build();
         MockServerWebExchange exchange = MockServerWebExchange.from(request);

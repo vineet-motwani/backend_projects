@@ -10,7 +10,7 @@ This document records the load testing methodology, reproduction steps, and benc
 | :--- | :--- | :--- |
 | **10k+ concurrent connections with minimal thread overhead** | Netty event loop on Linux `epoll` using a fixed thread pool (`2 * CPU cores`). Socket descriptors are multiplexed in non-blocking I/O rather than dedicating one OS thread per connection. | k6 ramping VUs with HTTP keep-alive connections; OS thread count monitored via `jcmd <pid> Thread.print \| grep -c nid=` stays constant. |
 | **Locally verifying RSA-256 JWTs to cut auth latency ~80%** | In-memory cryptographic signature verification using cached Auth0 JWKS public keys, eliminating outbound network HTTP round-trips (`/oauth/token/introspect`) on every request. | Compared local signature verification (~0.1ms CPU time) against typical Auth0 introspection latency (40ms - 90ms network round-trip). |
-| **Strict RBAC enforcement across 100% of proxy routes** | Custom `JwtGrantedAuthoritiesConverter` mapped to `permissions` claim and configured in `SecurityConfig` (`.pathMatchers("/api/**").hasAuthority("read:users")`). | Automated test suite verifying unauthenticated 401s, unauthorized 403s, and authenticated 200s. |
+| **Strict RBAC enforcement across 100% of proxy routes** | Custom `JwtGrantedAuthoritiesConverter` mapped to `permissions` claim and configured in `SecurityConfig` (`.pathMatchers("/get", "/get/**").hasAuthority("read:users")`). | Automated test suite verifying unauthenticated 401s, unauthorized 403s, and authenticated 200s. |
 | **Sub-millisecond (<1ms) rate limit evaluation with fail-open** | Aerospike single-record atomic `Operation.add` + `Operation.get` with 60s TTL, offloaded to Project Reactor's `Schedulers.boundedElastic()`. | k6 request duration percentiles; Aerospike server latency log showing `<0.8ms` execution time per atomic hit. |
 
 ---
@@ -69,7 +69,7 @@ Record benchmark runs here to track latency percentiles across iterations:
 
 ### Run 1: Baseline Load Test (50 VUs, Local Docker Compose)
 - **Date**: October 2026
-- **Target**: `http://localhost:8080/api/get` (proxied to `go-httpbin`)
+- **Target**: `http://localhost:8080/get` (proxied to `go-httpbin`)
 - **Throughput**: ~480 req/s
 - **Latency Percentiles**:
   - `p(50)`: 1.8 ms

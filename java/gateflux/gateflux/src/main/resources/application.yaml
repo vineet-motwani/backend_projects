@@ -41,9 +41,7 @@ spring:
             - id: my_first_route
               uri: ${UPSTREAM_URI:https://httpbin.org}
               predicates:
-                - Path=/api/get/**
-              filters:
-                - RewritePath=/api/(?<segment>.*), /$\{segment}
+                - Path=/get, /get/**
 
 management:
   endpoints:
