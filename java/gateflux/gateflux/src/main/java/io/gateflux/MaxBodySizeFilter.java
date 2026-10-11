@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;

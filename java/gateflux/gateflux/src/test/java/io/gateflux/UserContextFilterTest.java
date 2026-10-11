@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

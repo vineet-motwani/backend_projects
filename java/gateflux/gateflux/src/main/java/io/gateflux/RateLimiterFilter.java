@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import com.aerospike.client.IAerospikeClient;
 import com.aerospike.client.Bin;

@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SecurityConfig {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(exchanges -> exchanges
                     .pathMatchers("/actuator/**").permitAll()
-                    .pathMatchers("/get").hasAuthority("read:users")
+                    .pathMatchers("/api/**").hasAuthority("read:users")
                     .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2

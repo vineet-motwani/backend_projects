@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;

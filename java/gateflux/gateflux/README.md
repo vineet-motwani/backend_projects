@@ -202,7 +202,7 @@ The rate limit window resets 60 seconds after the first request.
 
 ```text
 gateflux/
-├── src/main/java/com/resume/gateflux/
+├── src/main/java/io/gateflux/
 │   ├── GatefluxApplication.java   # Spring Boot application entry point
 │   ├── CorrelationIdFilter.java   # Distributed tracing and correlation ID propagation
 │   ├── HeaderTimeoutHandler.java  # Netty slowloris header timeout enforcement

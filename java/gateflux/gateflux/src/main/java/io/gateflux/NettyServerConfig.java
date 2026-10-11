@@ -1,4 +1,4 @@
-package com.resume.gateflux;
+package io.gateflux;
 
 import io.netty.channel.ChannelPipeline;
 import org.springframework.beans.factory.annotation.Value;
