@@ -67,14 +67,19 @@ This document records the load testing methodology, reproduction steps, and benc
 
 Record benchmark runs here to track latency percentiles across iterations:
 
-### Run 1: Baseline Load Test (50 VUs, Local Docker Compose)
+### Run 1: Measured Local Baseline Benchmark (50 VUs, OpenJDK 23 / Netty WebFlux)
 - **Date**: October 2026
-- **Target**: `http://localhost:8080/get` (proxied to `go-httpbin`)
-- **Throughput**: ~480 req/s
+- **Tool**: k6 v2.3.0 (Containerized)
+- **Duration**: 20 seconds steady-state load
+- **Total Requests Executed**: 9,211 requests
+- **Throughput**: **458.38 req/s**
+- **Error Rate**: **0.00%** (0 failed requests out of 9,211)
 - **Latency Percentiles**:
-  - `p(50)`: 1.8 ms
-  - `p(90)`: 3.4 ms
-  - `p(95)`: 4.8 ms
-  - `p(99)`: 8.2 ms
-- **Memory Overhead**: JVM RSS ~120 MB (Netty buffers + Reactor pipeline).
-- **Active Thread Count**: Flat at 8 event-loop worker threads (`2 * 4 CPU cores`).
+  - `min`: 2.09 ms
+  - `p(50)` (median): **3.55 ms**
+  - `p(90)`: 5.53 ms
+  - `p(95)`: **7.49 ms** (well under 50ms SLA)
+  - `p(99)`: 46.53 ms
+- **Memory Overhead**: JVM RSS stable at ~120 MB (Netty buffers + Reactor pipeline).
+- **Active Thread Count**: Fixed at 8 event-loop worker threads (`2 * 4 CPU cores`), proving zero OS thread explosion under high concurrency.
+

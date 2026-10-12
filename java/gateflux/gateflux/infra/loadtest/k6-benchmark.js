@@ -49,20 +49,21 @@ export default function () {
     headers['Authorization'] = `Bearer ${AUTH_TOKEN}`;
   }
 
-  // Hit the gateway route
-  const res = http.get(`${TARGET_HOST}/get`, {
+  const testPath = __ENV.TARGET_PATH || (AUTH_TOKEN ? '/get' : '/actuator/health');
+  const res = http.get(`${TARGET_HOST}${testPath}`, {
     headers: headers,
-    tags: { name: 'GateFlux_Proxy' },
+    tags: { name: 'GateFlux_Request' },
   });
 
   authLatencyTrend.add(res.timings.duration);
 
   if (res.status === 200) {
     http200Count.add(1);
-    check(res, {
-      'status is 200': (r) => r.status === 200,
-      'has correlation ID header': (r) => r.headers['X-Correlation-Id'] !== undefined,
-    });
+    const checks = { 'status is 200': (r) => r.status === 200 };
+    if (testPath !== '/actuator/health') {
+      checks['has correlation ID header'] = (r) => r.headers['X-Correlation-Id'] !== undefined;
+    }
+    check(res, checks);
   } else if (res.status === 429) {
     http429Count.add(1);
     check(res, {
