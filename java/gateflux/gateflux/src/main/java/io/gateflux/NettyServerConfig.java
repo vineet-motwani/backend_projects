@@ -33,11 +33,13 @@ public class NettyServerConfig {
                 .requestTimeout(requestTimeout)
                 .doOnConnection(connection -> {
                     ChannelPipeline pipeline = connection.channel().pipeline();
-                    HeaderTimeoutHandler handler = new HeaderTimeoutHandler(headerTimeout.toMillis());
-                    if (pipeline.get(NettyPipeline.HttpCodec) != null) {
-                        pipeline.addAfter(NettyPipeline.HttpCodec, "headerTimeoutHandler", handler);
-                    } else {
-                        pipeline.addFirst("headerTimeoutHandler", handler);
+                    if (pipeline.get("headerTimeoutHandler") == null) {
+                        HeaderTimeoutHandler handler = new HeaderTimeoutHandler(headerTimeout.toMillis());
+                        if (pipeline.get(NettyPipeline.HttpCodec) != null) {
+                            pipeline.addAfter(NettyPipeline.HttpCodec, "headerTimeoutHandler", handler);
+                        } else {
+                            pipeline.addFirst("headerTimeoutHandler", handler);
+                        }
                     }
                 });
     }
