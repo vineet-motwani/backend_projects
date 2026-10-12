@@ -242,4 +242,5 @@ gateflux/
   k6 run infra/loadtest/k6-benchmark.js
   ```
   See [`infra/loadtest/BENCHMARKS.md`](infra/loadtest/BENCHMARKS.md) for full benchmark methodology and historical results.
+  For technical interview defense points and architectural justifications, see [`POINTS.md`](POINTS.md).
 
